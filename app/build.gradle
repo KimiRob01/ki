@@ -22,11 +22,10 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.github.ytai.ioio:IOIOLibAndroid:5.05'
     compile 'com.github.ytai.ioio:IOIOLibAndroidBluetooth:5.05'
-
-    compile 'com.github.felHR85:UsbSerial:4.0'
+    compile 'com.github.felHR85:UsbSerial:4.1.1'
     compile 'com.github.ytai.ioio:IOIOLibAndroidAccessory:5.05'
     compile 'com.github.ytai.ioio:IOIOLibAndroidDevice:5.05'
-
+    compile files('/home/karna/AndroidStudioProjects/karna_kimi_master/.idea/libraries/usbserial-release.jar')
 }
 
 repositories {

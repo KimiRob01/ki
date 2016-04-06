@@ -2,25 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/jars/classes.jar"
+        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="7eb8cafa44ed70860615af51c83606945c43fe73">
-        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-2dfd2ffe4adc2cb4363a7d138adb4ac286e35c6b.jar" />
-    </item>
-    <item
-        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-04a84a5d60a30686c4700c3209a8a6ffd88d3659.jar" />
-    </item>
-    <item
-        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroid/5.05/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c76a0936c82cef3da0770204f51f4914f32f6e08">
-        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-fd392c636df741e708351a76dc9d6f8b38c9638a.jar" />
+        sha1="fc276dd77600f248e53cc0bbf77a011d87931840">
+        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-85d13876b603bf33e35b52dcf406e8a20967d734.jar" />
     </item>
     <item
         jar="/home/karna/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
@@ -28,13 +14,6 @@
         revision="22.0.1"
         sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
         <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-52b676052d6e6508807f09e6302003b6719c0126.jar" />
-    </item>
-    <item
-        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.felHR85/UsbSerial/4.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4d1d913843ff7304c02796d711f19878f9a42d16">
-        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-4702f579106ebd1eb1a27fc91676848c61438fb0.jar" />
     </item>
     <item
         jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
@@ -51,11 +30,11 @@
         <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/IOIOLibCore-5.05-985b5f5cafa94bc4f0c4b34d1d3613c3baaa4919.jar" />
     </item>
     <item
-        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/jars/classes.jar"
+        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.felHR85/UsbSerial/4.1.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="fc276dd77600f248e53cc0bbf77a011d87931840">
-        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-85d13876b603bf33e35b52dcf406e8a20967d734.jar" />
+        sha1="96f56a343950d746a2a7addf2c622af8cb4023e9">
+        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-8387f8f21ddea283ca70576553e10c47791f4a27.jar" />
     </item>
     <item
         jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/jars/classes.jar"
@@ -63,6 +42,27 @@
         revision="22.0.1"
         sha1="f347dcaafe682fdd3d3131c9d6568065a8cd83ab">
         <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-319dfb3fc2830ab1acb9c9a78efbb469975a787c.jar" />
+    </item>
+    <item
+        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroid/5.05/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c76a0936c82cef3da0770204f51f4914f32f6e08">
+        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-fd392c636df741e708351a76dc9d6f8b38c9638a.jar" />
+    </item>
+    <item
+        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-04a84a5d60a30686c4700c3209a8a6ffd88d3659.jar" />
+    </item>
+    <item
+        jar="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7eb8cafa44ed70860615af51c83606945c43fe73">
+        <dex dex="/home/karna/AndroidStudioProjects/karna_kimi_master/app/build/intermediates/pre-dexed/debug/classes-2dfd2ffe4adc2cb4363a7d138adb4ac286e35c6b.jar" />
     </item>
 
 </items>

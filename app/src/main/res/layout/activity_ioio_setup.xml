@@ -5,6 +5,7 @@
     android:background="#fffbd5" >
 
 	<LinearLayout
+	    android:id="@+id/linearLayout2"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:layout_centerHorizontal="true"
@@ -13,7 +14,8 @@
 	    android:focusable="true"
 	    android:focusableInTouchMode="true"
 	    android:gravity="center"
-	    android:orientation="vertical" >
+		android:orientation="vertical"
+		android:weightSum="1">
 	    <requestFocus />
 
 		<LinearLayout
@@ -26,8 +28,8 @@
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_gravity="center_vertical"
-			    android:layout_marginRight="@dimen/layout_margin_right"
 			    android:layout_marginEnd="@dimen/layout_margin_right"
+			    android:layout_marginRight="@dimen/layout_margin_right"
 			    android:gravity="center"
 			    android:orientation="vertical" >
 
@@ -86,11 +88,11 @@
 			        android:layout_height="@dimen/edit_text_height"
 			        android:background="@drawable/edittext_bg"
 			        android:gravity="center_horizontal"
+			        android:inputType="textPassword"
 			        android:maxLength="10"
-			        android:textColor="@color/light_pink"
-			        android:textSize="@dimen/connection_text_size"
-	            	android:singleLine="true"
-					android:inputType="textPassword" />
+			        android:singleLine="true"
+	            	android:textColor="@color/light_pink"
+					android:textSize="@dimen/connection_text_size" />
 			</LinearLayout>
 		</LinearLayout>
 
@@ -100,15 +102,47 @@
 		    android:layout_height="@dimen/login_button_size"
 		    android:background="@drawable/button_start" />
 
+
+
+		<Button
+			android:id="@+id/buttonStart"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
+			android:onClick="onClickStart"
+			android:text="Begin"/>
+
+		<Button
+			android:id="@+id/buttonSend"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toEndOf="@+id/buttonStart"
+			android:layout_toRightOf="@+id/buttonStart"
+			android:onClick="onClickSend"
+			android:text="Send" />
+
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
+			android:layout_below="@+id/buttonSend" />
+
+		<Button
+			android:id="@+id/buttonStop"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toEndOf="@+id/buttonSend"
+			android:layout_toRightOf="@+id/buttonSend"
+			android:onClick="onClickStop"
+			android:text="Stop"/>
+
+
+
 	</LinearLayout>
 
-	<ImageView
-	    android:layout_width="@dimen/image_mode_size"
-	    android:layout_height="@dimen/image_mode_size"
-	    android:layout_alignParentLeft="true"
-	    android:layout_alignParentStart="true"
-	    android:layout_alignParentTop="true"
-	    android:src="@drawable/dialog_header_ioio"
-		android:contentDescription="@null" />
 
 </RelativeLayout>

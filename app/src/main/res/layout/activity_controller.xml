@@ -12,13 +12,14 @@
         android:contentDescription="@null" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_margin="@dimen/command_button_layout_margin"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_auto_focus"
@@ -34,25 +35,16 @@
             android:layout_margin="@dimen/command_button_margin"
             android:background="@drawable/button_snap" />
 
-        <CheckBox
-            android:id="@+id/cbFlash"
-            android:layout_width="@dimen/command_button_size"
-            android:layout_height="@dimen/command_button_size"
-            android:layout_margin="@dimen/command_button_margin"
-            android:background="@drawable/button_flash"
-            android:button="@null" />
-
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/layout_joystick"
         android:layout_width="@dimen/controller_size"
         android:layout_height="@dimen/controller_size"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="@dimen/controller_margin"
-        android:background="@drawable/image_button_bg" >
+        android:background="@drawable/image_button_bg">
     </RelativeLayout>
 
 </RelativeLayout>

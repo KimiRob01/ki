@@ -53,8 +53,6 @@ public class ControllerActivity extends Activity implements ConnectionManager.IO
         btnAutoFocus = (Button) findViewById(R.id.btn_auto_focus);
         btnAutoFocus.setOnClickListener(this);
 
-        cbFlash = (CheckBox) findViewById(R.id.cbFlash);
-        cbFlash.setOnCheckedChangeListener(this);
 
         connectionManager = new ConnectionManager(this, ipAddress, password);
         connectionManager.start();

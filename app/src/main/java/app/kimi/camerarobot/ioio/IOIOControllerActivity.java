@@ -1,38 +1,34 @@
 package app.kimi.camerarobot.ioio;
 
 
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.Display;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 
-import app.kimi.camerarobot.utils.Utilities;
+import app.kimi.camerarobot.R;
 import app.kimi.camerarobot.constant.Command;
 import app.kimi.camerarobot.constant.DirectionState;
 import app.kimi.camerarobot.constant.ExtraKey;
-import app.kimi.camerarobot.R;
-
-
+import app.kimi.camerarobot.utils.Utilities;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.PwmOutput;
 import ioio.lib.api.exception.ConnectionLostException;
 import ioio.lib.util.BaseIOIOLooper;
 import ioio.lib.util.IOIOLooper;
 import ioio.lib.util.android.IOIOActivity;
-
-import java.io.ByteArrayOutputStream;
-
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.SurfaceHolder;
-import android.view.SurfaceHolder.Callback;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.view.Display;
-import android.view.SurfaceView;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class IOIOControllerActivity extends IOIOActivity implements CameraManager.CameraManagerListener, Callback, ConnectionManager.ConnectionListener, ConnectionManager.ControllerCommandListener, ConnectionManager.SendCommandListener {
@@ -60,6 +56,7 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
 
     private int imageQuality;
     private boolean isConnected = false;
+
 
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +102,12 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         orientationManager = new OrientationManager(this);
         cameraManager = new CameraManager(selectedPreviewSize);
         cameraManager.setCameraManagerListener(this);
+
+
+
     }
+
+
 
     public void onStop() {
         super.onStop();
@@ -169,8 +171,20 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         }
     }
 
+
+
+
+
+
+
     @Override
     public void onRequestTakePicture() {
+
+
+
+
+
+
         double currentTimeSeconds = System.currentTimeMillis();
         if (currentTimeSeconds - lastPictureTakenTime > TAKE_PICTURE_COOLDOWN) {
             lastPictureTakenTime = (int) currentTimeSeconds;
@@ -180,7 +194,12 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
 
     @Override
     public void onRequestAutoFocus() {
+
         cameraManager.requestAutoFocus();
+
+
+
+
     }
 
     @Override
@@ -188,12 +207,14 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         btnMoveForward.setPressed(true);
         directionState = DirectionState.UP;
         updateMovementSpeed(movementSpeed);
+
     }
 
     @Override
     public void onMoveForwardRightCommand(int movementSpeed) {
         btnMoveForwardRight.setPressed(true);
         directionState = DirectionState.UPRIGHT;
+
         updateMovementSpeed(movementSpeed);
     }
 
@@ -331,6 +352,10 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    protected IOIOLooper createIOIOLooper() {
+        return new Looper();
+    }
+
     class Looper extends BaseIOIOLooper {
         DigitalOutput D1A, D1B, D2A, D2B, D3A, D3B, D4A, D4B;
         PwmOutput PWM1, PWM2, PWM3, PWM4;
@@ -364,6 +389,7 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
                 PWM3.setDutyCycle((float) movementSpeed / 100);
                 PWM4.setDutyCycle((float) movementSpeed / 100);
                 D1A.write(true);
+
                 D1B.write(false);
                 D2A.write(true);
                 D2B.write(false);
@@ -496,8 +522,22 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
             });
         }
     }
-
-    protected IOIOLooper createIOIOLooper() {
-        return new Looper();
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

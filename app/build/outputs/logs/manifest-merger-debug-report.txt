@@ -18,7 +18,7 @@ ADDED from AndroidManifest.xml:2:1
 uses-sdk
 ADDED from AndroidManifest.xml:8:5
 MERGED from com.android.support:support-v4:22.2.1:20:5
-MERGED from com.github.felHR85:UsbSerial:4.0:6:5
+MERGED from com.github.felHR85:UsbSerial:4.1.1:6:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:10:9
 		INJECTED from AndroidManifest.xml:0:0
