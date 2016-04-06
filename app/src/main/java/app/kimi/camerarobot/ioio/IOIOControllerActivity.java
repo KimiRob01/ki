@@ -51,7 +51,7 @@ import ioio.lib.util.android.IOIOActivity;
 public class IOIOControllerActivity extends IOIOActivity implements CameraManager.CameraManagerListener, Callback, ConnectionManager.ConnectionListener, ConnectionManager.ControllerCommandListener, ConnectionManager.SendCommandListener {
     private static final int TAKE_PICTURE_COOLDOWN = 1000;
     public final String ACTION_USB_PERMISSION = "app.kimi.camerarobot.USB_PERMISSION";
-    Button startButton, sendButton, stopButton;
+    Button startButton, stopButton;
     UsbManager usbManager;
     UsbDevice device;
     UsbSerialDevice serialPort;
@@ -177,7 +177,7 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
 
         usbManager = (UsbManager) getSystemService(this.USB_SERVICE);
         startButton = (Button) findViewById(R.id.buttonStart);
-        sendButton = (Button) findViewById(R.id.buttonSend);
+
 
         stopButton = (Button) findViewById(R.id.buttonStop);
 
@@ -292,6 +292,8 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         btnMoveForward.setPressed(true);
         directionState = DirectionState.UP;
         updateMovementSpeed(movementSpeed);
+        String string = "ledh";
+        serialPort.write(string.getBytes());
 
     }
 
@@ -299,8 +301,9 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
     public void onMoveForwardRightCommand(int movementSpeed) {
         btnMoveForwardRight.setPressed(true);
         directionState = DirectionState.UPRIGHT;
-
         updateMovementSpeed(movementSpeed);
+        String string = "ledl";
+        serialPort.write(string.getBytes());
     }
 
     @Override
@@ -308,6 +311,8 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         btnMoveForwardLeft.setPressed(true);
         directionState = DirectionState.UPLEFT;
         updateMovementSpeed(movementSpeed);
+        String string = "ledh";
+        serialPort.write(string.getBytes());
     }
 
     @Override
@@ -443,7 +448,7 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
 
     public void setUiEnabled(boolean bool) {
         startButton.setEnabled(!bool);
-        sendButton.setEnabled(bool);
+
         stopButton.setEnabled(bool);
 
 
@@ -475,12 +480,7 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
 
     }
 
-    public void onClickSend(View view) {
-        String string = "ledh";
-        serialPort.write(string.getBytes());
 
-
-    }
 
     public void onClickStop(View view) {
         setUiEnabled(false);
@@ -522,7 +522,6 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
                 PWM3.setDutyCycle((float) movementSpeed / 100);
                 PWM4.setDutyCycle((float) movementSpeed / 100);
                 D1A.write(true);
-
                 D1B.write(false);
                 D2A.write(true);
                 D2B.write(false);
@@ -537,6 +536,7 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
                 PWM4.setDutyCycle((float) movementSpeed / 100);
                 D1A.write(false);
                 D1B.write(true);
+
                 D2A.write(false);
                 D2B.write(true);
                 D3A.write(false);

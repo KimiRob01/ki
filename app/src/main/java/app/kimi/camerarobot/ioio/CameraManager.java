@@ -2,6 +2,7 @@ package app.kimi.camerarobot.ioio;
 
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.hardware.Camera.CameraInfo;
 import android.os.Environment;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -13,19 +14,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 public class CameraManager implements Camera.PictureCallback, Camera.PreviewCallback {
 
+    int w, h;
+    int[] rgbs;
+    boolean initialed = false;
     private CameraManagerListener listener;
     private Camera mCamera;
     private Camera.Parameters params;
     private Camera.Size pictureSize;
     private Camera.Size previewSize;
-
     private int selectedPreviewSize;
-    int w, h;
-    int[] rgbs;
-    boolean initialed = false;
 
     public CameraManager(int selectedPreviewSize) {
         this.selectedPreviewSize = selectedPreviewSize;
@@ -170,7 +169,7 @@ public class CameraManager implements Camera.PictureCallback, Camera.PreviewCall
 
     public void createCameraInstance(SurfaceHolder holder) {
         try {
-            mCamera = Camera.open(0);
+            mCamera = Camera.open(CameraInfo.CAMERA_FACING_FRONT);
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
         } catch (IOException e) {
@@ -183,12 +182,6 @@ public class CameraManager implements Camera.PictureCallback, Camera.PreviewCall
         mCamera.stopPreview();
         mCamera.release();
         mCamera = null;
-    }
-
-    public interface CameraManagerListener {
-        public void onPictureTaken(String filename, String path);
-        public void onPreviewTaken(Bitmap bitmap);
-        public void onPreviewOutOfMemory(OutOfMemoryError e);
     }
 
     public void requestAutoFocus() {
@@ -255,4 +248,11 @@ public class CameraManager implements Camera.PictureCallback, Camera.PreviewCall
             }
         }
     }
+
+    public interface CameraManagerListener {
+        public void onPictureTaken(String filename, String path);
+        public void onPreviewTaken(Bitmap bitmap);
+        public void onPreviewOutOfMemory(OutOfMemoryError e);
+    }
 }
+

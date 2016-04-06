@@ -25,34 +25,24 @@
             android:textSize="@dimen/data_text_size" />
 
         <Button
+            android:id="@+id/buttonStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Begin"
-            android:id="@+id/buttonStart"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_gravity="center_horizontal"
             android:onClick="onClickStart"
-            android:layout_gravity="center_horizontal" />
+            android:text="Begin" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stop"
             android:id="@+id/buttonStop"
-            android:layout_toRightOf="@+id/buttonSend"
-            android:layout_toEndOf="@+id/buttonSend"
-            android:onClick="onClickStop"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/buttonSend"
-            android:onClick="onClickSend"
-            android:layout_toRightOf="@+id/buttonStart"
-            android:layout_toEndOf="@+id/buttonStart"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_toEndOf="@+id/buttonSend"
+            android:layout_toRightOf="@+id/buttonSend"
+            android:onClick="onClickStop"
+            android:text="Stop" />
 
         <TextView
             android:id="@+id/tv_movement_speed"
@@ -157,14 +147,7 @@
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_toEndOf="@+id/buttonSend"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+
 
 
 </RelativeLayout>

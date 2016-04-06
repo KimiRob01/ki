@@ -139,7 +139,7 @@ public class IOIOSetupActivity extends Activity implements OnClickListener, OnSe
     public void initCameraPreviewSize() {
         Camera mCamera;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD) {
-            mCamera = Camera.open();
+            mCamera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
         } else {
             mCamera = Camera.open(0);
         }
