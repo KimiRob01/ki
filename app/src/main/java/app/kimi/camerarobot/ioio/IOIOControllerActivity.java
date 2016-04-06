@@ -1,8 +1,17 @@
 package app.kimi.camerarobot.ioio;
 
 
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbDeviceConnection;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
@@ -16,7 +25,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.felhr.usbserial.UsbSerialDevice;
+import com.felhr.usbserial.UsbSerialInterface;
+
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import app.kimi.camerarobot.R;
 import app.kimi.camerarobot.constant.Command;
@@ -31,8 +46,68 @@ import ioio.lib.util.IOIOLooper;
 import ioio.lib.util.android.IOIOActivity;
 
 
+
+
 public class IOIOControllerActivity extends IOIOActivity implements CameraManager.CameraManagerListener, Callback, ConnectionManager.ConnectionListener, ConnectionManager.ControllerCommandListener, ConnectionManager.SendCommandListener {
     private static final int TAKE_PICTURE_COOLDOWN = 1000;
+    public final String ACTION_USB_PERMISSION = "app.kimi.camerarobot.USB_PERMISSION";
+    Button startButton, sendButton, stopButton;
+    UsbManager usbManager;
+    UsbDevice device;
+    UsbSerialDevice serialPort;
+    UsbDeviceConnection connection;
+    UsbSerialInterface.UsbReadCallback mCallback = new UsbSerialInterface.UsbReadCallback() { //Defining a Callback which triggers whenever data is read.
+        @Override
+        public void onReceivedData(byte[] arg0) {
+            String data = null;
+            try {
+                data = new String(arg0, "UTF-8");
+                data.concat("/n");
+
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    };
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() { //Broadcast Receiver to automatically start and stop the Serial connection.
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(ACTION_USB_PERMISSION)) {
+                boolean granted = intent.getExtras().getBoolean(UsbManager.EXTRA_PERMISSION_GRANTED);
+                if (granted) {
+                    connection = usbManager.openDevice(device);
+                    serialPort = UsbSerialDevice.createUsbSerialDevice(device, connection);
+                    if (serialPort != null) {
+                        if (serialPort.open()) { //Set Serial Connection Parameters.
+                            setUiEnabled(true);
+                            serialPort.setBaudRate(9600);
+                            serialPort.setDataBits(UsbSerialInterface.DATA_BITS_8);
+                            serialPort.setStopBits(UsbSerialInterface.STOP_BITS_1);
+                            serialPort.setParity(UsbSerialInterface.PARITY_NONE);
+                            serialPort.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF);
+                            serialPort.read(mCallback);
+
+                        } else {
+                            Log.d("SERIAL", "PORT NOT OPEN");
+                        }
+                    } else {
+                        Log.d("SERIAL", "PORT IS NULL");
+                    }
+                } else {
+                    Log.d("SERIAL", "PERM NOT GRANTED");
+                }
+            } else if (intent.getAction().equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)) {
+                onClickStart(startButton);
+            } else if (intent.getAction().equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
+                onClickStop(stopButton);
+
+            }
+        }
+
+        ;
+    };
     private RelativeLayout layoutParent;
     private TextView tvMovementSpeed;
     private TextView tvIpAddress;
@@ -45,18 +120,14 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
     private Button btnMoveRight;
     private Button btnMoveLeft;
     private SurfaceView surfacePreview;
-
     private int movementSpeed = 0;
     private int lastPictureTakenTime = 0;
     private int directionState = DirectionState.STOP;
-
     private ConnectionManager connectionManager;
     private CameraManager cameraManager;
     private OrientationManager orientationManager;
-
     private int imageQuality;
     private boolean isConnected = false;
-
 
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +174,20 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         cameraManager = new CameraManager(selectedPreviewSize);
         cameraManager.setCameraManagerListener(this);
 
+
+        usbManager = (UsbManager) getSystemService(this.USB_SERVICE);
+        startButton = (Button) findViewById(R.id.buttonStart);
+        sendButton = (Button) findViewById(R.id.buttonSend);
+
+        stopButton = (Button) findViewById(R.id.buttonStop);
+
+
+        setUiEnabled(false);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ACTION_USB_PERMISSION);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        registerReceiver(broadcastReceiver, filter);
 
 
     }
@@ -356,6 +441,54 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
         return new Looper();
     }
 
+    public void setUiEnabled(boolean bool) {
+        startButton.setEnabled(!bool);
+        sendButton.setEnabled(bool);
+        stopButton.setEnabled(bool);
+
+
+    }
+
+    public void onClickStart(View view) {
+
+        HashMap<String, UsbDevice> usbDevices = usbManager.getDeviceList();
+        if (!usbDevices.isEmpty()) {
+            boolean keep = true;
+            for (Map.Entry<String, UsbDevice> entry : usbDevices.entrySet()) {
+                device = entry.getValue();
+                int deviceVID = device.getVendorId();
+                if (deviceVID == 0x2341)//Arduino Vendor ID
+                {
+                    PendingIntent pi = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
+                    usbManager.requestPermission(device, pi);
+                    keep = false;
+                } else {
+                    connection = null;
+                    device = null;
+                }
+
+                if (!keep)
+                    break;
+            }
+        }
+
+
+    }
+
+    public void onClickSend(View view) {
+        String string = "ledh";
+        serialPort.write(string.getBytes());
+
+
+    }
+
+    public void onClickStop(View view) {
+        setUiEnabled(false);
+        serialPort.close();
+
+
+    }
+
     class Looper extends BaseIOIOLooper {
         DigitalOutput D1A, D1B, D2A, D2B, D3A, D3B, D4A, D4B;
         PwmOutput PWM1, PWM2, PWM3, PWM4;
@@ -522,6 +655,22 @@ public class IOIOControllerActivity extends IOIOActivity implements CameraManage
             });
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

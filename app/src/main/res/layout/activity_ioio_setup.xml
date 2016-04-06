@@ -104,43 +104,6 @@
 
 
 
-		<Button
-			android:id="@+id/buttonStart"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true"
-			android:layout_alignParentStart="true"
-			android:onClick="onClickStart"
-			android:text="Begin"/>
-
-		<Button
-			android:id="@+id/buttonSend"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_toEndOf="@+id/buttonStart"
-			android:layout_toRightOf="@+id/buttonStart"
-			android:onClick="onClickSend"
-			android:text="Send" />
-
-		<TextView
-			android:id="@+id/textView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true"
-			android:layout_alignParentLeft="true"
-			android:layout_alignParentStart="true"
-			android:layout_below="@+id/buttonSend" />
-
-		<Button
-			android:id="@+id/buttonStop"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_toEndOf="@+id/buttonSend"
-			android:layout_toRightOf="@+id/buttonSend"
-			android:onClick="onClickStop"
-			android:text="Stop"/>
-
-
 
 	</LinearLayout>
 
