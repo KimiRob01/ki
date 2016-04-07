@@ -122,9 +122,9 @@ int id btn_move_right 0x7f0c0013
 int id btn_ok 0x7f0c001c
 int id btn_preview_size_chooser 0x7f0c0018
 int id btn_take_photo 0x7f0c0003
-int id buttonSend 0x7f0c000d
+int id buttonSend 0x7f0c000e
 int id buttonStart 0x7f0c000b
-int id buttonStop 0x7f0c000c
+int id buttonStop 0x7f0c000d
 int id et_ip_address 0x7f0c0005
 int id et_password 0x7f0c0006
 int id iv_camera_image 0x7f0c0000
@@ -140,7 +140,7 @@ int id surface_preview 0x7f0c0009
 int id textView1 0x7f0c0021
 int id tv_image_quality 0x7f0c001a
 int id tv_ip_address 0x7f0c000a
-int id tv_movement_speed 0x7f0c000e
+int id tv_movement_speed 0x7f0c000c
 int layout activity_controller 0x7f040000
 int layout activity_controller_connection 0x7f040001
 int layout activity_ioio 0x7f040002

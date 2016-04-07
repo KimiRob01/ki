@@ -145,9 +145,9 @@ public final class R {
         public static final int btn_ok=0x7f0c001c;
         public static final int btn_preview_size_chooser=0x7f0c0018;
         public static final int btn_take_photo=0x7f0c0003;
-        public static final int buttonSend=0x7f0c000d;
+        public static final int buttonSend=0x7f0c000e;
         public static final int buttonStart=0x7f0c000b;
-        public static final int buttonStop=0x7f0c000c;
+        public static final int buttonStop=0x7f0c000d;
         public static final int et_ip_address=0x7f0c0005;
         public static final int et_password=0x7f0c0006;
         public static final int iv_camera_image=0x7f0c0000;
@@ -163,7 +163,7 @@ public final class R {
         public static final int textView1=0x7f0c0021;
         public static final int tv_image_quality=0x7f0c001a;
         public static final int tv_ip_address=0x7f0c000a;
-        public static final int tv_movement_speed=0x7f0c000e;
+        public static final int tv_movement_speed=0x7f0c000c;
     }
     public static final class layout {
         public static final int activity_controller=0x7f040000;

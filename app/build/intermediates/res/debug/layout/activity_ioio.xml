@@ -34,6 +34,14 @@
             android:onClick="onClickStart"
             android:text="Begin" />
 
+        <TextView
+            android:id="@+id/tv_movement_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speed 0"
+            android:textColor="#ca2559"
+            android:textSize="@dimen/data_text_size" />
+
         <Button
             android:id="@+id/buttonStop"
             android:layout_width="wrap_content"
@@ -43,14 +51,6 @@
             android:layout_toRightOf="@+id/buttonSend"
             android:onClick="onClickStop"
             android:text="Stop" />
-
-        <TextView
-            android:id="@+id/tv_movement_speed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Speed 0"
-            android:textColor="#ca2559"
-            android:textSize="@dimen/data_text_size" />
 
     </LinearLayout>
 
@@ -147,8 +147,7 @@
     </LinearLayout>
 
 
-
-
+   
 
 </RelativeLayout>
 
